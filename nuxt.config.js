@@ -48,7 +48,30 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/'
+    baseURL: process.env.URL_BASE || 'http://localhost:3000'
+  },
+
+  // ! Modulo de configuracion de autenticacion
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          global: true, // ! Acceso a la variable token en cualquier lugar de la aplicacion
+          required: true, // ! Requerir token
+          type: 'Bearer' // ! Tipo de token
+        },
+        user: {
+          property: 'user', // ! Propiedad de usuario en el objeto de respuesta del servidor
+          autoFetch: true // ! Auto fetch user on login
+        },
+        endpoints: {
+          login: { url: '/auth/login', method: 'post' },
+          logout: { url: '/auth/logout', method: 'post' },
+          user: { url: '/auth/user', method: 'get' }
+        }
+      }
+    }
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
