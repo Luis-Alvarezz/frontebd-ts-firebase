@@ -19,6 +19,10 @@
       />
     </v-card-text>
 
+    <v-btn text to="/register">
+      ¿No tienes cuenta? Registrate
+    </v-btn>
+
     <v-card-actions>
       <v-btn color="primary" @click="login">
         Ingresar

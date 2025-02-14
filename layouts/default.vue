@@ -2,10 +2,11 @@
   <v-app>
     <v-container fill-height>
       <v-row justify="center" align="center" class="fil-height">
-        <v-col cols="12" sm="8" md="4">
+        <v-col cols="12" class="text-center mx-auto">
           <v-alert
             v-if="$store.state.alert.show"
             :type="$store.state.alert.type"
+            class="alert-fixed"
             dismissible
           >
             {{ $store.state.alert.message }}
@@ -26,3 +27,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.alert-fixed {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+</style>
